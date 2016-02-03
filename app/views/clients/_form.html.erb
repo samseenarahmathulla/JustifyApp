@@ -1,8 +1,8 @@
-<% @user_type = "lawyer" %>
+<% @user_type = "client" %>
 <div class="panel-body">
 	<div class="row">
 		<div class="col-lg-12">
-			<%= form_for(@user, url: lawyer_path(params[:id]), :method => "PUT", :html => { :id => "login-form-lawyer", :style => "display: block;" }) do |f| %>
+			<%= form_for(@user, url: client_path(params[:id]), :method => "PUT", :html => { :id => "login-form-client", :style => "display: block;" }) do |f| %>
 				<div class="form-group">
 					<%= f.text_field :first_name, autofocus: true, tabindex: "1", class: "form-control", placeholder: "First Name", required: true %>
 				</div>
@@ -22,27 +22,21 @@
 					<%= f.text_field :zipcode, tabindex: "6", class: "form-control", placeholder: "Zip Code", required: true %>
 				</div>
 				<div class="form-group">
-					<%= f.text_field :area_of_practice, tabindex: "7", class: "form-control", placeholder: "Area of Practice", required: true %>
-				</div>
-				<div class="form-group">
-					<%= f.text_field :lawfirm_id, tabindex: "8", class: "form-control", placeholder: "Lawfirm", required: true %>
-				</div>
-				<div class="form-group">
 					<span class="btn btn-default btn-file" data-toggle="tooltip" title="Please upload your document(s)"> Attach
 						Document(s)
-						<input type="file", tabindex="9">
+						<input type="file", tabindex="7">
 					</span>
 				</div>
 				<input type="hidden" id="email_check" value="">
 				<div class="form-group">
 					<div class="row">
 						<div class="col-sm-6 col-sm-offset-3">
-							<input type="submit" name="register-submit" id="register-submit" tabindex="10" class="form-control btn btn-register" value="Submit" onclick="checkEmail('<%= @user_type %>', <%= params[:id] %>)">
+							<input type="submit" name="register-submit" id="register-submit" tabindex="8" class="form-control btn btn-register" value="Submit" onclick="checkEmail('<%= @user_type %>', <%= params[:id] %>)">
 						</div>
 					</div>
 				</div>
 			<% end %>
-			<%= form_for(@user, url: lawyer_path(params[:id]), :method => "PUT", html: { method: :put, :id => "register-form-lawyer", :style => "display: none;" }) do |f| %>
+			<%= form_for(@user, url: client_path(params[:id]), :method => "PUT", html: { method: :put, :id => "register-form-client", :style => "display: none;" }) do |f| %>
 				<div class="form-group">
 					<%= f.password_field :password, autocomplete: "off", tabindex: "1", class: "form-control", placeholder: "Password", required: true, oninput: "inputVal(this.value, '#{@user_type}')" %>
 				</div>

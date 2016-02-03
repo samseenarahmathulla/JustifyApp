@@ -1,11 +1,11 @@
-class ClientsController < ApplicationController
+class LawfirmsController < ApplicationController
   # before_action :authenticate_user!
   
   def index
   end
   
   def show
-    @user = User.find(params[:id]) 
+    @user = User.select("*").joins("LEFT JOIN lawfirms on users.id = lawfirms.user_id").where(:id => params[:id]).first
   end
   
   def edit
@@ -15,8 +15,17 @@ class ClientsController < ApplicationController
   #updates field when the form is submited
   def update
     @user = User.find(params[:id]) 
+    @lawfirm = Lawfirm.find_by_user_id(params[:id])
+    
     if @user.update(user_params) 
-      redirect_to client_path(params[:id])
+      if @lawfirm  #if lawfirm exists then update
+        @lawfirm.update(lawfirm_params)
+      else  #if no lawfirm, then create lawfirm.
+        @lawfirm = Lawfirm.new(lawfirm_params)
+        @lawfirm.user_id = params[:id]
+        @lawfirm.save
+      end
+      redirect_to lawfirm_path(params[:id])
     else 
       render 'show'
     end
@@ -35,10 +44,16 @@ class ClientsController < ApplicationController
     end
   end
   
+  
+
 private
 def user_params
   params.require(:user).permit(:first_name,:last_name, :email, :password, :country, :zipcode, :phone)
 end
 
-  
+def lawfirm_params
+  params.require(:user).permit(:name_of_firm, :area_of_practice, :phone_of_firm)
+end
+
+
 end

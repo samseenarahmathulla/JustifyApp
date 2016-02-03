@@ -19,7 +19,6 @@
 						<% if current_user || session[:user] %>
 							<li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
 						<% end %>
-						<li><a href="./chat_of_lawyers.html">Message</a></li>
 						<li><a href="#" data-toggle="modal"
 							data-target="#myModal">Profile</a></li>
 						<li><a href="./forum.html">Forum</a></li>
@@ -31,13 +30,13 @@
 		<div id="about" class="container-fluid">
 			<div class="row">
 				<div class="user_pic">
-					<img src="/assets/lawyer.png" alt="User" class="pic_dim"/>
+					<img src="/assets/lawfirm.jpg" alt="User" class="pic_dim"/>
 				</div>
 				<div class="col-sm-8">
-					<p>Hi <%= @user.first_name.to_s %> <a class="member" href="#" data-toggle="modal" data-target="#buyModal">( silver member ) </a></p>
+					<h3><% if @user.name_of_firm && @user.name_of_firm != "" %><%= @user.name_of_firm %><% else %> - <% end %></h3>
 					<div id="exp">Practice Experience: <% if @user.area_of_practice && @user.area_of_practice != "" %><%= @user.area_of_practice %><% else %> - <% end %></div>
 					<div id="country">Country: <% if @user.country && @user.country != "" %><%= @user.country %><% else %> -  <% end %></div>
-					<div id="phone">Phone: Area Code - <% if @user.phone && @user.phone != "" %><%= @user.phone %><% else %> - <% end %></div>
+					<div id="phone">Phone: Area Code - <% if @user.phone_of_firm && @user.phone_of_firm != "" %><%= @user.phone_of_firm %><% else %> - <% end %></div>
 					<!-- star feature -->
 					<div id="stars">
 				        <span class="glyphicon glyphicon-star"></span>
@@ -46,10 +45,7 @@
 				        <span class="glyphicon glyphicon-star"></span>
 				        <span class="glyphicon glyphicon-star-empty"></span>
     				</div>
-					<!--  star feature -->
-					<div id="chat_to_lawyers">
-						<a href="./chat_of_lawyers.html"><span class="glyphicon glyphicon-comment chat-icon"> Online</span></a>
-					</div>
+					<p>To know more about our services, click here - <a class="member" href="#" data-toggle="modal" data-target="#buyModal"> Membership </a>
 				</div>
 			</div>
 		</div>
@@ -179,11 +175,11 @@ $(document).ready(function(){
 						<div class="panel-heading">
 							<div class="row">
 								<div class="col-xs-6">
-									<a href="#" class="active" id="login-form-link-lawyer">Personal
+									<a href="#" class="active" id="login-form-link-lawfirm">Personal
 										Details</a>
 								</div>
 								<div class="col-xs-6">
-									<a href="#" id="register-form-link-lawyer">Reset Password</a>
+									<a href="#" id="register-form-link-lawfirm">Reset Password</a>
 								</div>
 							</div>
 							<hr>

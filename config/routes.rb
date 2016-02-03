@@ -11,6 +11,14 @@ Rails.application.routes.draw do
   
   resources :clients
   resources :lawyers
+  resources :lawfirms
+  
+  get '/forgot_password' => 'home#forgot_password'
+  get '/users/check_email' => 'users#check_email'
+  get '/client_check_email' => 'clients#check_email'
+  get '/lawyer_check_email' => 'lawyers#check_email'
+  get '/lawfirm_check_email' => 'lawfirms#check_email'
+  
   # end
   # get '/signup' => 'users#new'
   # post '/users' => 'users#create'

@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     elsif resource[:role_id] == 3
       store_location_for(resource, lawyer_path(resource[:id]))
     elsif resource[:role_id] == 4
-      store_location_for(resource, client_path(resource[:id]))
+      store_location_for(resource, lawfirm_path(resource[:id]))
     end
     
     stored_location_for(resource) || root_path

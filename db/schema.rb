@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160129082257) do
+ActiveRecord::Schema.define(version: 20160203152455) do
 
   create_table "lawfirms", force: :cascade do |t|
     t.integer "user_id",           limit: 4
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20160129082257) do
     t.integer "number_of_lawyers", limit: 4
     t.string  "name_of_firm",      limit: 255
     t.string  "area_of_practice",  limit: 255
-    t.integer "phone",             limit: 4
+    t.integer "phone_of_firm",     limit: 4
     t.integer "score",             limit: 4
   end
 

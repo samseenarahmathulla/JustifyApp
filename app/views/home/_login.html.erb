@@ -48,9 +48,45 @@
 								<div class="row">
 									<div class="col-lg-12">
 										<div class="text-center">
-											<a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+											<a href="#" tabindex="5" class="forgot-password" onclick="forgotPassword()">Forgot Password?</a>
 										</div>
+										<div id="forgot-pwd-div" style="display: none;">
+											<div class="form-group">
+												<input type="email" name="email" id="email" class="form-control" placeholder="Enter your email"/>
+											</div>
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="button" name="frgt-pwd-submit" id="frgt-pwd-submit" tabindex="4" class="form-control btn btn-login" value="Forgot Password" onclick="submitPwd('<%= @user %>')">
+											</div>
+											<div id="show_msg" style="color: green;"></div>
+										</div>
+										
 									</div>
+									<script type="text/javascript">
+										function forgotPassword() {
+											if (document.getElementById('forgot-pwd-div').style.display == "none") {
+												document.getElementById('forgot-pwd-div').style.display = "block";
+											}
+											else {
+												document.getElementById('forgot-pwd-div').style.display = "none";
+											}
+											document.getElementById('show_msg').innerHTML = "";
+										}
+										function submitPwd(type_of_user) {
+											var form = document.getElementById('login-form-' + type_of_user);
+											var email_field = form.email.value;
+											$.ajax({
+												type : 'get',
+												url : '/forgot_password',
+												dataType : "json",
+												data : {
+													email : email_field
+												},
+												success : function(data, textStatus, xhr) {
+													document.getElementById('show_msg').innerHTML = data.message;
+												}
+											});
+										}
+									</script>
 								</div>
 							</div>
 						<% end %>

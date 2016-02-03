@@ -61,5 +61,8 @@ gem "omniauth-google-oauth2"
 #linked in
 gem 'omniauth-linkedin'
 
-#Country select
+#Country select dropdown
 gem 'country_select'
+
+#Client side validations via javascript
+# gem 'client_side_validations' #Refer link https://github.com/DavyJonesLocker/client_side_validations

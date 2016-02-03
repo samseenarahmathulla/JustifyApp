@@ -5,11 +5,14 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook, :google_oauth2, :linkedin] # Fb Authentication
          
-  validates :first_name,  :presence => true  
+  validates :first_name,  :presence => true
   validates :last_name,  :presence => true
   validates :role_id,  :presence => true
   
+  
   belongs_to :role
+  has_one :lawyer
+  has_one :lawfirm
   
   
   # # Confirmation mail - send only to clients 
