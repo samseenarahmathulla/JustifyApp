@@ -1,14 +1,11 @@
 <div class="row onl_row-sm-offset-3 onl_socialButtons">
 	<div class="col-xs-2 col-sm-2">
-		<a href="#" class="btn btn-lg btn-block onl_btn-facebook" data-toggle="tooltip" data-placement="top" title="Facebook"> <i class="fa fa-facebook fa-2x"></i> <span class="hidden-xs"></span> 
 		<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %> </a>
 	</div>
 	<div class="col-xs-2 col-sm-2">
-		<a href="#" class="btn btn-lg btn-block onl_btn-google-plus" data-toggle="tooltip" data-placement="top" title="Google Plus"> <i class="fa fa-google-plus fa-2x"></i> <span class="hidden-xs"></span> 
 		<%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %> </a>
 	</div>
 	<div class="col-xs-2 col-sm-2">
-		<a href="#" class="btn btn-lg btn-block onl_btn-linkedin" data-toggle="tooltip" data-placement="top" title="LinkedIn"> <i class="fa fa-linkedin fa-2x"></i> <span class="hidden-xs"></span> 
 		<%= link_to "Sign in with Linkedin", user_omniauth_authorize_path(:linkedin) %> </a>
 	</div>
 </div>

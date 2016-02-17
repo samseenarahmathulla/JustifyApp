@@ -1,6 +1,6 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   
-  # TODO: send mail to users with new password and ask them to click on the confirmation link.
+  # TODO: make a common method and put the diff providers as an array and loop thru.
   
   def facebook
     @user = User.from_omniauth(request.env["omniauth.auth"])

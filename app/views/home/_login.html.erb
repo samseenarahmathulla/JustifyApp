@@ -16,7 +16,7 @@
 
 			<!--  social buttons -->
 			<% if @user == "client" %>
-				<%= render 'social_icons' %>
+				<%= render 'home/social_icons' %>
 			<% end %>
 			<!--  social buttons -->
 			
@@ -50,7 +50,7 @@
 										<div class="text-center">
 											<a href="#" tabindex="5" class="forgot-password" onclick="forgotPassword()">Forgot Password?</a>
 										</div>
-										<div id="forgot-pwd-div" style="display: none;">
+										<!-- <div id="forgot-pwd-div" style="display: none;">
 											<div class="form-group">
 												<input type="email" name="email" id="email" class="form-control" placeholder="Enter your email"/>
 											</div>
@@ -58,8 +58,10 @@
 												<input type="button" name="frgt-pwd-submit" id="frgt-pwd-submit" tabindex="4" class="form-control btn btn-login" value="Forgot Password" onclick="submitPwd('<%= @user %>')">
 											</div>
 											<div id="show_msg" style="color: green;"></div>
-										</div>
-										
+										</div> -->
+										<%- if devise_mapping.recoverable?  %>
+										  <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+										<% end -%>
 									</div>
 									<script type="text/javascript">
 										function forgotPassword() {
@@ -90,7 +92,7 @@
 								</div>
 							</div>
 						<% end %>
-						<%= render 'register', :locals => { :type_of_user => @user } %>
+						<%= render 'home/register', :locals => { :type_of_user => @user } %>
 					</div>
 				</div>
 			</div>

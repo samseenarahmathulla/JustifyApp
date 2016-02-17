@@ -7,8 +7,12 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
   # devise_for :users, :controllers => { registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks" }  # resources :users do
-  devise_for :users, :controllers => { registrations: 'registrations', omniauth_callbacks: "omniauth_callbacks" }
+  devise_for :users, :controllers => { registrations: 'registrations', omniauth_callbacks: "omniauth_callbacks", confirmations: "confirmations" }
   
+  resources :users, only: :show do
+     post :generate_new_password_email
+  end
+
   resources :clients
   resources :lawyers
   resources :lawfirms

@@ -87,7 +87,7 @@ Rails.application.configure do
       # :address => "smtp.gmail.com",
       # :port => 587,
       # :domain => 'localhost:3000',
-      # :user_name => "cto@lawyersify.com",
+      # :user_name => "cto@justify.com",
       # :password => "samseena2016",
       # :authentication => :plain,
   # }

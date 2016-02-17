@@ -1,16 +1,90 @@
-<h2>Resend confirmation instructions</h2>
+<div class="background-container confirm-new">
+	<nav class="navbar navbar-default navbar-fixed-top"
+	style="background-color: #231A1B;">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target="#myNavbar">
+					<span class="icon-bar"></span><span class="icon-bar"></span><span
+					class="icon-bar"></span>
+				</button>
+				<img class="logo" src="/assets/ubuntu.png" alt="Logo" height="150" width="250">
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav navbar-right">
+					<% if current_user %>
+					<li>
+						<%= link_to "Logout", destroy_user_session_path, method: :delete %>
+					</li>
+					<% else %>
+					<li>
+						<a href="#" data-toggle="modal" data-target="#clientModal">Client</a>
+					</li>
+					<li>
+						<a href="#" data-toggle="modal" data-target="#lawyerModal">Lawyer</a>
+					</li>
+					<% end %>
+					<li>
+						<a href="#" data-toggle="modal" data-target="#claimModal">Claim Listing</a>
+					</li>
+					<li>
+						<a href="./forum.html">Forum</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<h3>Resend confirmation instructions</h3>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %> 
-  </div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-lg-12">
+				<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+					<%= devise_error_messages! %>
 
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
+					<div class="form-group reset-confirm">
+						<%= f.email_field :email, autofocus: true, tabindex: "1", class: "form-control", placeholder: "Email", required: true %>
+					</div>
+					<div class="col-sm-6 col-sm-offset-3 reset-confirm">
+						<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Resend">
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<footer class="container-fluid text-center">
+		<a href="#myPage" title="To Top"> <span
+		class="glyphicon glyphicon-chevron-up"></span> </a>
+		<p>
+			Justify - 2016
+		</p>
+		
+	</footer>
+	<!--  client modal -->
+	<div class="modal fade bs-modal-sm" id="clientModal" tabindex="-1"
+	role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<%= render 'home/login', :locals => { :type_of_user => "client" }  %>
+		</div>
+	</div>
+	<!--  client modal -->
 
-<%= render "devise/shared/links" %>
+	<!-- lawyer modal -->
+	<div class="modal fade bs-modal-sm" id="lawyerModal" tabindex="-1"
+	role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<%= render 'home/login', :locals => { :type_of_user => "lawyer" }  %>
+		</div>
+	</div>
+	<!-- lawyer modal -->
+
+	<!--  claim listing of lawfirms -->
+	<div class="modal fade bs-modal-sm" id="claimModal" tabindex="-1"
+	role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<%= render 'home/login', :locals => { :type_of_user => "lawfirm" }  %>
+		</div>
+	</div>
+	<!--  end of claim listing -->
+</div>
